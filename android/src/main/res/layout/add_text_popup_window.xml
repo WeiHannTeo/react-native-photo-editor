@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     android:background="#B3000000"
     android:orientation="vertical">
-
     <TextView
         android:id="@+id/add_text_done_tv"
         android:layout_width="wrap_content"
@@ -18,7 +17,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />
-
+   
     <EditText
         android:id="@+id/add_text_edit_text"
         style="@style/EditText"
@@ -28,20 +27,27 @@
         android:layout_below="@+id/add_text_done_tv"
         android:background="@null"
         android:gravity="center"
-        android:inputType="textMultiLine"
+        android:inputType="text"
         android:textSize="40sp" />
-
+    <RelativeLayout
+        android:id="@+id/add_text_font_picker_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/add_text_font_picker_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/add_text_color_picker_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/add_text_color_picker_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </RelativeLayout>
-
 </RelativeLayout>

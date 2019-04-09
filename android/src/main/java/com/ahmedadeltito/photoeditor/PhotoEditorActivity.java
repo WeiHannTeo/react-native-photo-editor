@@ -37,10 +37,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmedadeltito.photoeditor.widget.SlidingUpPanelLayout;
+
 import com.ahmedadeltito.photoeditorsdk.BrushDrawingView;
 import com.ahmedadeltito.photoeditorsdk.OnPhotoEditorSDKListener;
 import com.ahmedadeltito.photoeditorsdk.PhotoEditorSDK;
 import com.ahmedadeltito.photoeditorsdk.ViewType;
+
 import com.viewpagerindicator.PageIndicator;
 
 import java.io.BufferedOutputStream;
@@ -71,6 +73,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private RelativeLayout bottomShadowRelativeLayout;
     private ArrayList<Integer> colorPickerColors;
     private int colorCodeTextView = -1;
+    private ArrayList<Typeface> fontPickerFonts;
+    private Typeface fontCodeTextView = Typeface.DEFAULT;
     private PhotoEditorSDK photoEditorSDK;
 
     @Override
@@ -211,6 +215,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             colorPickerColors.add(getResources().getColor(R.color.yellow_green_color_picker));
         }
 
+        fontPickerFonts = new ArrayList<>();
+        fontPickerFonts.add(Typeface.DEFAULT);
+        fontPickerFonts.add(getFontFromRes(R.raw.timesnewroman));
+        fontPickerFonts.add(getFontFromRes(R.raw.sugar));
+        fontPickerFonts.add(getFontFromRes(R.raw.tulips));
+        fontPickerFonts.add(getFontFromRes(R.raw.tycho));
 
         new CountDownTimer(500, 100) {
 
@@ -272,8 +282,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
     }
 
-    private void addText(String text, int colorCodeTextView) {
-        photoEditorSDK.addText(text, colorCodeTextView);
+    private void addText(String text, int colorCodeTextView, Typeface fontCodeTextView) {
+        photoEditorSDK.addText(text, colorCodeTextView, fontCodeTextView);
     }
 
     private void clearAllViews() {
@@ -288,15 +298,16 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         photoEditorSDK.brushEraser();
     }
 
-    private void openAddTextPopupWindow(String text, int colorCode) {
+    private void openAddTextPopupWindow(String text, int colorCode, Typeface fontCode) {
         colorCodeTextView = colorCode;
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View addTextPopupWindowRootView = inflater.inflate(R.layout.add_text_popup_window, null);
         final EditText addTextEditText = (EditText) addTextPopupWindowRootView.findViewById(R.id.add_text_edit_text);
         TextView addTextDoneTextView = (TextView) addTextPopupWindowRootView.findViewById(R.id.add_text_done_tv);
+        
+        LinearLayoutManager addTextColorPickerLayoutManager = new LinearLayoutManager(PhotoEditorActivity.this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerView addTextColorPickerRecyclerView = (RecyclerView) addTextPopupWindowRootView.findViewById(R.id.add_text_color_picker_recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(PhotoEditorActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        addTextColorPickerRecyclerView.setLayoutManager(layoutManager);
+        addTextColorPickerRecyclerView.setLayoutManager(addTextColorPickerLayoutManager);
         addTextColorPickerRecyclerView.setHasFixedSize(true);
         ColorPickerAdapter colorPickerAdapter = new ColorPickerAdapter(PhotoEditorActivity.this, colorPickerColors);
         colorPickerAdapter.setOnColorPickerClickListener(new ColorPickerAdapter.OnColorPickerClickListener() {
@@ -307,8 +318,26 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             }
         });
         addTextColorPickerRecyclerView.setAdapter(colorPickerAdapter);
+
+        //Change to Font Picker
+        LinearLayoutManager addTextFontPickerLayoutManager = new LinearLayoutManager(PhotoEditorActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView addTextFontPickerRecyclerView = (RecyclerView) addTextPopupWindowRootView.findViewById(R.id.add_text_font_picker_recycler_view);
+        addTextFontPickerRecyclerView.setLayoutManager(addTextFontPickerLayoutManager);
+        addTextFontPickerRecyclerView.setHasFixedSize(true);
+        FontPickerAdapter fontPickerAdapter = new FontPickerAdapter(PhotoEditorActivity.this, fontPickerFonts);
+        fontPickerAdapter.setOnFontPickerClickListener(new FontPickerAdapter.OnFontPickerClickListener() {
+            @Override
+            public void onFontPickerClickListener(Typeface fontCode) {
+                addTextEditText.setTypeface(fontCode);
+                fontCodeTextView = fontCode;
+            }
+        });
+        addTextFontPickerRecyclerView.setAdapter(fontPickerAdapter);
+
+
         if (stringIsNotEmpty(text)) {
             addTextEditText.setText(text);
+            addTextEditText.setTypeface(fontCode);
             addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.white) : colorCode);
         }
         final PopupWindow pop = new PopupWindow(PhotoEditorActivity.this);
@@ -323,7 +352,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         addTextDoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addText(addTextEditText.getText().toString(), colorCodeTextView);
+                addText(addTextEditText.getText().toString(), colorCodeTextView, fontCodeTextView);
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 pop.dismiss();
@@ -508,7 +537,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.add_image_emoji_tv) {
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
         } else if (v.getId() == R.id.add_text_tv) {
-            openAddTextPopupWindow("", -1);
+            openAddTextPopupWindow("", -1, Typeface.DEFAULT);
         } else if (v.getId() == R.id.add_pencil_tv) {
             updateBrushDrawingView(true);
         } else if (v.getId() == R.id.done_drawing_tv) {
@@ -527,8 +556,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onEditTextChangeListener(String text, int colorCode) {
-        openAddTextPopupWindow(text, colorCode);
+    public void onEditTextChangeListener(String text, int colorCode, Typeface fontCode) {
+        openAddTextPopupWindow(text, colorCode, fontCode);
     }
 
     @Override

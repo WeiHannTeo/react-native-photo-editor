@@ -66,24 +66,6 @@
                 android:textSize="20sp"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/erase_drawing_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/done_drawing_tv"
-                android:padding="10dp"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"
-                android:text="@string/erase"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/drawing_view_color_picker_recycler_view"
                 android:layout_width="match_parent"
@@ -105,7 +87,7 @@
                 android:layout_alignTop="@+id/top_shadow"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
-
+                <!-- Close -->
                 <TextView
                     android:id="@+id/close_tv"
                     android:layout_width="wrap_content"
@@ -113,8 +95,21 @@
                     android:padding="15dp"
                     android:text="@string/ic_close"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/close_text_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/close_tv"
+                    android:layout_alignLeft="@+id/close_tv"
+                    android:layout_alignRight="@+id/close_tv"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Close"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
 
+                <!-- Text -->
                 <TextView
                     android:id="@+id/add_text_tv"
                     android:layout_width="wrap_content"
@@ -124,28 +119,66 @@
                     android:padding="15dp"
                     android:text="@string/ic_text"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
-
+                    android:textSize="25sp" />
                 <TextView
-                    android:id="@+id/add_pencil_tv"
+                    android:id="@+id/add_text_text_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/add_text_tv"
+                    android:layout_alignLeft="@+id/add_text_tv"
+                    android:layout_alignRight="@+id/add_text_tv"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Text"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+                <!-- Clear All -->
+                <TextView
+                    android:id="@+id/clear_all_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/add_text_tv"
                     android:padding="15dp"
-                    android:text="@string/ic_draw"
+                    android:text="@string/ic_clear_all"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
-
+                    android:textSize="25sp" />
                 <TextView
-                    android:id="@+id/add_image_emoji_tv"
+                    android:id="@+id/clear_all_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_pencil_tv"
-                    android:padding="15dp"
-                    android:text="@string/ic_images"
+                    android:layout_below="@+id/clear_all_tv"
+                    android:layout_alignLeft="@+id/clear_all_tv"
+                    android:layout_alignRight="@+id/clear_all_tv"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Clear All"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
-
+                    android:textSize="15sp"  />
+                <!-- Undo -->
+                <TextView
+                    android:id="@+id/undo_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/clear_all_tv"
+                    android:padding="15dp"
+                    android:text="@string/ic_clear_all"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+                <TextView
+                    android:id="@+id/undo_text_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/undo_tv"
+                    android:layout_alignLeft="@+id/undo_tv"
+                    android:layout_alignRight="@+id/undo_tv"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Undo"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:visibility="gone"  />
+                
             </RelativeLayout>
 
             <View
@@ -163,7 +196,45 @@
                 android:layout_alignTop="@+id/bottom_shadow"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp">
-
+                <!--Not Used Start-->
+                <!-- Pencil -->
+                <TextView
+                    android:id="@+id/add_pencil_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/add_text_tv"
+                    android:padding="15dp"
+                    android:text="@string/ic_draw"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/erase_drawing_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toStartOf="@+id/done_drawing_tv"
+                    android:padding="10dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="@string/erase"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+                <!-- Emoji -->
+                <TextView
+                    android:id="@+id/add_image_emoji_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/add_pencil_tv"
+                    android:padding="15dp"
+                    android:text="@string/ic_images"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+                <!-- Save -->
                 <TextView
                     android:id="@+id/save_tv"
                     android:layout_width="wrap_content"
@@ -175,7 +246,6 @@
                     android:text="@string/ic_save"
                     android:textColor="#FFFFFF"
                     android:textSize="25sp" />
-
                 <TextView
                     android:id="@+id/save_text_tv"
                     android:layout_width="wrap_content"
@@ -188,62 +258,8 @@
                     android:textColor="#FFFFFF"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/clear_all_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/clear_all_text_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
-                    android:gravity="center"
-                    android:text="@string/ic_clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/clear_all_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
-                    android:text="@string/clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/undo_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/undo_text_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
-                    android:gravity="center"
-                    android:text="@string/ic_clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/undo_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
-                    android:text="@string/undo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:visibility="gone" />
-
+                <!-- Done -->
+                <!--Not Used End-->
                 <TextView
                     android:id="@+id/go_to_next_screen_tv"
                     android:layout_width="wrap_content"
@@ -253,7 +269,6 @@
                     android:text="@string/ic_continue"
                     android:textColor="#FFFFFF"
                     android:textSize="40sp" />
-
             </RelativeLayout>
 
             <RelativeLayout
