@@ -34,6 +34,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
 import com.ahmedadeltito.photoeditor.widget.SlidingUpPanelLayout;
@@ -75,6 +77,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private int colorCodeTextView = -1;
     private ArrayList<Typeface> fontPickerFonts;
     private Typeface fontCodeTextView = Typeface.DEFAULT;
+    private float addLineSpaceTextView = 0;
+    private float multiplyLineSpaceTextView = 1;
     private PhotoEditorSDK photoEditorSDK;
 
     @Override
@@ -282,8 +286,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
     }
 
-    private void addText(String text, int colorCodeTextView, Typeface fontCodeTextView) {
-        photoEditorSDK.addText(text, colorCodeTextView, fontCodeTextView);
+    private void addText(String text, int colorCodeTextView, Typeface fontCodeTextView, float addLineSpaceTextView, float miltiplyLineSpaceTextView) {
+        photoEditorSDK.addText(text, colorCodeTextView, fontCodeTextView, addLineSpaceTextView, miltiplyLineSpaceTextView);
     }
 
     private void clearAllViews() {
@@ -298,8 +302,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         photoEditorSDK.brushEraser();
     }
 
-    private void openAddTextPopupWindow(String text, int colorCode, Typeface fontCode) {
-        colorCodeTextView = colorCode;
+    private void openAddTextPopupWindow(String text, int colorCode, Typeface fontCode, float addLineSpace, float miltiplyLineSpace) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View addTextPopupWindowRootView = inflater.inflate(R.layout.add_text_popup_window, null);
         final EditText addTextEditText = (EditText) addTextPopupWindowRootView.findViewById(R.id.add_text_edit_text);
@@ -334,10 +337,29 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         });
         addTextFontPickerRecyclerView.setAdapter(fontPickerAdapter);
 
+        //Change Line Height
+        SeekBar addTextSeekBar = (SeekBar) addTextPopupWindowRootView.findViewById(R.id.add_text_seekbar);
+        addTextSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+            @Override       
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }       
+
+            @Override       
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                addTextEditText.setLineSpacing((progress - 50), 1);
+                addLineSpaceTextView = (progress - 50);
+                multiplyLineSpaceTextView = 1;
+            }
+        });
 
         if (stringIsNotEmpty(text)) {
             addTextEditText.setText(text);
             addTextEditText.setTypeface(fontCode);
+            addTextEditText.setLineSpacing(addLineSpace, miltiplyLineSpace);
             addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.white) : colorCode);
         }
         final PopupWindow pop = new PopupWindow(PhotoEditorActivity.this);
@@ -352,7 +374,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         addTextDoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addText(addTextEditText.getText().toString(), colorCodeTextView, fontCodeTextView);
+                addText(addTextEditText.getText().toString(), colorCodeTextView, fontCodeTextView, addLineSpaceTextView, multiplyLineSpaceTextView);
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 pop.dismiss();
@@ -448,7 +470,6 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-
     private void returnBackWithUpdateImage() {
         updateView(View.GONE);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
@@ -537,7 +558,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.add_image_emoji_tv) {
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
         } else if (v.getId() == R.id.add_text_tv) {
-            openAddTextPopupWindow("", -1, Typeface.DEFAULT);
+            openAddTextPopupWindow("", -1, Typeface.DEFAULT, 0, 1);
         } else if (v.getId() == R.id.add_pencil_tv) {
             updateBrushDrawingView(true);
         } else if (v.getId() == R.id.done_drawing_tv) {
@@ -556,8 +577,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onEditTextChangeListener(String text, int colorCode, Typeface fontCode) {
-        openAddTextPopupWindow(text, colorCode, fontCode);
+    public void onEditTextChangeListener(String text, int colorCode, Typeface fontCode, float addLineSpace, float miltiplyLineSpace) {
+        openAddTextPopupWindow(text, colorCode, fontCode, addLineSpace, miltiplyLineSpace);
     }
 
     @Override
