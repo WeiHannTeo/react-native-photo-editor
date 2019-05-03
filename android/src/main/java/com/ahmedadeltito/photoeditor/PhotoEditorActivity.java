@@ -237,7 +237,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         fontPickerFonts.add(getFontFromRes(R.raw.sacramento));
         fontPickerFonts.add(getFontFromRes(R.raw.signaturamonoline));
         fontPickerFonts.add(getFontFromRes(R.raw.sophia));
-        fontPickerFonts.add(getFontFromRes(R.raw.thesalvadorvondensed));
+        fontPickerFonts.add(getFontFromRes(R.raw.thesalvadorcondensed));
         fontPickerFonts.add(getFontFromRes(R.raw.veronalotte));
 
         new CountDownTimer(500, 100) {
