@@ -64,16 +64,58 @@ public class FontPickerAdapter extends RecyclerView.Adapter<FontPickerAdapter.Vi
             textView.setText("Default");
         }
         if(fontCode.equals(fontPickerFonts.get(1))){
-            textView.setText("Times New Roman");
+            textView.setText("Ailerons");
         }
         if(fontCode.equals(fontPickerFonts.get(2))){
-            textView.setText("Sugar");
+            textView.setText("Athene");
         }
         if(fontCode.equals(fontPickerFonts.get(3))){
-            textView.setText("Tulips");
+            textView.setText("Break");
         }
         if(fontCode.equals(fontPickerFonts.get(4))){
-            textView.setText("Tycho");
+            textView.setText("Fountain");
+        }
+        if(fontCode.equals(fontPickerFonts.get(5))){
+            textView.setText("Gabriola");
+        }
+        if(fontCode.equals(fontPickerFonts.get(6))){
+            textView.setText("Grand Hotel");
+        }
+        if(fontCode.equals(fontPickerFonts.get(7))){
+            textView.setText("Kano");
+        }
+        if(fontCode.equals(fontPickerFonts.get(8))){
+            textView.setText("Lemon Cookie");
+        }
+        if(fontCode.equals(fontPickerFonts.get(9))){
+            textView.setText("Le Super");
+        }
+        if(fontCode.equals(fontPickerFonts.get(10))){
+            textView.setText("Minaxi Hairline");
+        }
+        if(fontCode.equals(fontPickerFonts.get(11))){
+            textView.setText("Minik Bold");
+        }
+        if(fontCode.equals(fontPickerFonts.get(12))){
+            textView.setText("Quentin");
+        }
+        if(fontCode.equals(fontPickerFonts.get(13))){
+            textView.setText("Rainwood");
+        }
+        if(fontCode.equals(fontPickerFonts.get(14))){
+            textView.setText("Sacramento");
+        }
+        if(fontCode.equals(fontPickerFonts.get(15))){
+            textView.setText("Signatura Monoline");
+        }
+        if(fontCode.equals(fontPickerFonts.get(16))){
+            textView.setText("Sophia");
+        }
+        if(fontCode.equals(fontPickerFonts.get(16))){
+            textView.setText("The Salvador Condensed");
+        }
+        if(fontCode.equals(fontPickerFonts.get(16))){
+            textView.setText("Verona Lotte");
         }
     }
 

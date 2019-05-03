@@ -92,8 +92,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         options.inSampleSize = 1;
         Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
 
-        Typeface newFont = getFontFromRes(R.raw.eventtusicons);
-        emojiFont = getFontFromRes(R.raw.emojioneandroid);
+        Typeface newFont = getFontFromRes(R.raw.EventtusIcons);
+        emojiFont = getFontFromRes(R.raw.EmojiOnAndroid);
 
         BrushDrawingView brushDrawingView = (BrushDrawingView) findViewById(R.id.drawing_view);
         drawingViewColorPickerRecyclerView = (RecyclerView) findViewById(R.id.drawing_view_color_picker_recycler_view);
@@ -221,10 +221,24 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
         fontPickerFonts = new ArrayList<>();
         fontPickerFonts.add(Typeface.DEFAULT);
-        fontPickerFonts.add(getFontFromRes(R.raw.timesnewroman));
-        fontPickerFonts.add(getFontFromRes(R.raw.sugar));
-        fontPickerFonts.add(getFontFromRes(R.raw.tulips));
-        fontPickerFonts.add(getFontFromRes(R.raw.tycho));
+        fontPickerFonts.add(getFontFromRes(R.raw.Ailerons));
+        fontPickerFonts.add(getFontFromRes(R.raw.Athene));
+        fontPickerFonts.add(getFontFromRes(R.raw.Break));
+        fontPickerFonts.add(getFontFromRes(R.raw.Fountain));
+        fontPickerFonts.add(getFontFromRes(R.raw.Gabriola));
+        fontPickerFonts.add(getFontFromRes(R.raw.GrandHotel));
+        fontPickerFonts.add(getFontFromRes(R.raw.Kano));
+        fontPickerFonts.add(getFontFromRes(R.raw.LemonCookie));
+        fontPickerFonts.add(getFontFromRes(R.raw.LeSuper));
+        fontPickerFonts.add(getFontFromRes(R.raw.MinaxiHairline));
+        fontPickerFonts.add(getFontFromRes(R.raw.MinikBold));
+        fontPickerFonts.add(getFontFromRes(R.raw.Quentin));
+        fontPickerFonts.add(getFontFromRes(R.raw.Rainwood));
+        fontPickerFonts.add(getFontFromRes(R.raw.Sacramento));
+        fontPickerFonts.add(getFontFromRes(R.raw.SignaturaMonoline));
+        fontPickerFonts.add(getFontFromRes(R.raw.Sophia));
+        fontPickerFonts.add(getFontFromRes(R.raw.TheSalvadorCondensed));
+        fontPickerFonts.add(getFontFromRes(R.raw.VeronaLotte));
 
         new CountDownTimer(500, 100) {
 
