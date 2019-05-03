@@ -223,7 +223,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         fontPickerFonts.add(Typeface.DEFAULT);
         fontPickerFonts.add(getFontFromRes(R.raw.ailerons));
         fontPickerFonts.add(getFontFromRes(R.raw.athene));
-        fontPickerFonts.add(getFontFromRes(R.raw.break));
+        fontPickerFonts.add(getFontFromRes(R.raw.breakFont));
         fontPickerFonts.add(getFontFromRes(R.raw.fountain));
         fontPickerFonts.add(getFontFromRes(R.raw.gabriola));
         fontPickerFonts.add(getFontFromRes(R.raw.grandHotel));
