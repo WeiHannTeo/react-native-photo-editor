@@ -23,6 +23,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ import android.widget.TextView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
+import android.graphics.drawable.Drawable;
 
 import com.ahmedadeltito.photoeditor.widget.SlidingUpPanelLayout;
 
@@ -83,8 +85,23 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_editor);
+
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        CharSequence title = "Invitation Card Editor";
+        myToolbar.setTitle(title);
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        
+        setSupportActionBar(myToolbar);
+        
+        Drawable backArrow = getResources().getDrawable(R.drawable.back_icon);
+        getSupportActionBar().setHomeAsUpIndicator(backArrow);
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         String selectedImagePath = getIntent().getExtras().getString("selectedImagePath");
 
@@ -277,6 +294,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 addImageEmojiTextView.setVisibility(View.INVISIBLE);
             }
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private boolean stringIsNotEmpty(String string) {
@@ -485,12 +508,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void returnBackWithUpdateImage() {
-        updateView(View.GONE);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        parentImageRelativeLayout.setLayoutParams(layoutParams);
-        new CountDownTimer(1000, 500) {
+        // updateView(View.GONE);
+        // RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+        //         RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        // layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        // parentImageRelativeLayout.setLayoutParams(layoutParams);
+        new CountDownTimer(0, 0) {
             public void onTick(long millisUntilFinished) {
 
             }
@@ -571,7 +594,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             onBackPressed();
         } else if (v.getId() == R.id.add_image_emoji_tv) {
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-        } else if (v.getId() == R.id.add_text_tv) {
+        } else if (v.getId() == R.id.add_text_tv || v.getId() == R.id.add_text_lv) {
             openAddTextPopupWindow("", -1, Typeface.DEFAULT, 0, 1);
         } else if (v.getId() == R.id.add_pencil_tv) {
             updateBrushDrawingView(true);

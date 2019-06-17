@@ -7,66 +7,71 @@
     android:background="#B3000000"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/add_text_done_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/rounded_border_text_view"
-        android:padding="10dp"
-        android:text="@string/done"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
-   
+      android:id="@+id/add_text_done_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentTop="true"
+      android:background="@drawable/rounded_border_text_view"
+      android:layout_margin="7.5dp"
+      android:padding="10dp"
+      android:text="@string/done"
+      android:textAllCaps="false"
+      android:textColor="@color/white"
+      android:textSize="15sp" />
     <EditText
-        android:id="@+id/add_text_edit_text"
-        style="@style/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/add_text_color_picker_relative_layout"
-        android:layout_below="@+id/add_text_done_tv"
-        android:background="@null"
-        android:gravity="center"
-        android:inputType="textMultiLine"
-        android:textSize="40sp" />
+      android:id="@+id/add_text_edit_text"
+      style="@style/EditText"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@+id/add_text_color_picker_relative_layout"
+      android:layout_below="@+id/add_text_done_tv"
+      android:background="@null"
+      android:gravity="center"
+      android:inputType="textMultiLine"
+      android:textSize="40sp" />
     <RelativeLayout
-        android:id="@+id/add_text_font_picker_relative_layout"
+      android:id="@+id/add_text_font_picker_relative_layout"
+      android:background="#FFFFFF"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_centerVertical="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="80dp">
+      <SeekBar  
+        android:id="@+id/add_text_seekbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="90dp">
-        <SeekBar  
-            android:id="@+id/add_text_seekbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" 
-            android:progress="50"
-            android:max="100" />
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" 
+        android:progress="50"
+        android:max="100" />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/add_text_font_picker_relative_layout"
+      android:id="@+id/add_text_font_picker_relative_layout"
+      android:background="#FFFFFF"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_centerVertical="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="40dp">
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/add_text_font_picker_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/add_text_font_picker_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/add_text_color_picker_relative_layout"
+      android:id="@+id/add_text_color_picker_relative_layout"
+      android:background="#FFFFFF"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:layout_alignParentBottom="true">
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/add_text_color_picker_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/add_text_color_picker_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />
     </RelativeLayout>
 </RelativeLayout>
