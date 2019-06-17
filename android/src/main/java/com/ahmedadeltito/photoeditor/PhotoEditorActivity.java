@@ -68,6 +68,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
     private final String TAG = "PhotoEditorActivity";
     private RelativeLayout parentImageRelativeLayout;
+    
+    private RelativeLayout photoEditorRelativeLayout;
     private RecyclerView drawingViewColorPickerRecyclerView;
     private TextView undoTextView, undoTextTextView, doneDrawingTextView, eraseDrawingTextView;
     private SlidingUpPanelLayout mLayout;
@@ -111,6 +113,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         BrushDrawingView brushDrawingView = (BrushDrawingView) findViewById(R.id.drawing_view);
         drawingViewColorPickerRecyclerView = (RecyclerView) findViewById(R.id.drawing_view_color_picker_recycler_view);
         parentImageRelativeLayout = (RelativeLayout) findViewById(R.id.parent_image_rl);
+        photoEditorRelativeLayout = (RelativeLayout) findViewById(R.id.photo_edit_rl);
         TextView closeTextView = (TextView) findViewById(R.id.close_tv);
         TextView addTextView = (TextView) findViewById(R.id.add_text_tv);
         TextView addPencil = (TextView) findViewById(R.id.add_pencil_tv);
@@ -170,7 +173,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         indicator.setViewPager(pager);
 
         photoEditorSDK = new PhotoEditorSDK.PhotoEditorSDKBuilder(PhotoEditorActivity.this)
-                .parentView(parentImageRelativeLayout) // add parent image view
+                .parentView(photoEditorRelativeLayout) // add parent image view
                 .childView(photoEditImageView) // add the desired image view
                 .deleteView(deleteRelativeLayout) // add the deleted view that will appear during the movement of the views
                 .brushDrawingView(brushDrawingView) // add the brush drawing view that is responsible for drawing on the image view
@@ -453,12 +456,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+          /*
             updateView(View.GONE);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
             parentImageRelativeLayout.setLayoutParams(layoutParams);
-            new CountDownTimer(1000, 500) {
+          */
+            new CountDownTimer(0, 0) {
                 public void onTick(long millisUntilFinished) {
 
                 }
@@ -480,9 +485,9 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
                         try {
                             FileOutputStream out = new FileOutputStream(file);
-                            if (parentImageRelativeLayout != null) {
-                                parentImageRelativeLayout.setDrawingCacheEnabled(true);
-                                parentImageRelativeLayout.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 80, out);
+                            if (photoEditorRelativeLayout != null) {
+                              photoEditorRelativeLayout.setDrawingCacheEnabled(true);
+                              photoEditorRelativeLayout.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 80, out);
                             }
 
                             out.flush();
@@ -504,11 +509,13 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void returnBackWithUpdateImage() {
+      /*
         updateView(View.GONE);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         parentImageRelativeLayout.setLayoutParams(layoutParams);
+       */
         new CountDownTimer(0, 0) {
             public void onTick(long millisUntilFinished) {
 
@@ -523,9 +530,9 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
                 try {
                     FileOutputStream out = new FileOutputStream(file);
-                    if (parentImageRelativeLayout != null) {
-                        parentImageRelativeLayout.setDrawingCacheEnabled(true);
-                        parentImageRelativeLayout.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 80, out);
+                    if (photoEditorRelativeLayout != null) {
+                      photoEditorRelativeLayout.setDrawingCacheEnabled(true);
+                      photoEditorRelativeLayout.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 80, out);
                     }
 
                     out.flush();
@@ -605,7 +612,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.erase_drawing_tv) {
             eraseDrawing();
         } else if (v.getId() == R.id.go_to_next_screen_tv) {
-            returnBackWithUpdateImage();
+            //returnBackWithUpdateImage();
+            returnBackWithSavedImage();
         }
     }
 
