@@ -89,17 +89,13 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_editor);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        CharSequence title = "Invitation Card Editor";
-        myToolbar.setTitle(title);
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        
-        setSupportActionBar(myToolbar);
-        
         Drawable backArrow = getResources().getDrawable(R.drawable.back_icon);
         getSupportActionBar().setHomeAsUpIndicator(backArrow);
         
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -508,11 +504,11 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void returnBackWithUpdateImage() {
-        // updateView(View.GONE);
-        // RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-        //         RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        // layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        // parentImageRelativeLayout.setLayoutParams(layoutParams);
+        updateView(View.GONE);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        parentImageRelativeLayout.setLayoutParams(layoutParams);
         new CountDownTimer(0, 0) {
             public void onTick(long millisUntilFinished) {
 
