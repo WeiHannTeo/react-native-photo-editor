@@ -612,8 +612,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.erase_drawing_tv) {
             eraseDrawing();
         } else if (v.getId() == R.id.go_to_next_screen_tv) {
-            //returnBackWithUpdateImage();
-            returnBackWithSavedImage();
+            returnBackWithUpdateImage();
         }
     }
 
