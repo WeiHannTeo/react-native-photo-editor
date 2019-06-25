@@ -606,7 +606,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.save_tv || v.getId() == R.id.save_text_tv) {
             returnBackWithSavedImage();
         } else if (v.getId() == R.id.clear_all_tv || v.getId() == R.id.clear_all_text_tv) {
-            clearAllViews();
+            onBackPressed();
+            //clearAllViews();
         } else if (v.getId() == R.id.undo_text_tv || v.getId() == R.id.undo_tv) {
             undoViews();
         } else if (v.getId() == R.id.erase_drawing_tv) {

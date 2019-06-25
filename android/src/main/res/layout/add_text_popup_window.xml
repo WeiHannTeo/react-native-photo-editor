@@ -31,24 +31,41 @@
       android:gravity="center"
       android:inputType="textMultiLine"
       android:textSize="40sp" />
-    <RelativeLayout
-      android:id="@+id/add_text_font_picker_relative_layout"
+    <LinearLayout
+      android:id="@+id/add_text_line_height_linear_layout"
       android:background="#FFFFFF"
       android:layout_width="match_parent"
       android:layout_height="40dp"
       android:layout_centerVertical="true"
       android:layout_alignParentBottom="true"
-      android:layout_marginBottom="80dp">
-      <SeekBar  
-        android:id="@+id/add_text_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" 
-        android:progress="50"
-        android:max="100" />
-    </RelativeLayout>
+      android:layout_marginBottom="80dp"
+      android:weightSum="100"
+      >
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="90">
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:background="@drawable/lineheight"/>
+      </LinearLayout>
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="10">
+        <SeekBar  
+          android:id="@+id/add_text_seekbar"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" 
+          android:progress="50"
+          android:max="100" />
+      </LinearLayout>
+    </LinearLayout>
     <RelativeLayout
       android:id="@+id/add_text_font_picker_relative_layout"
       android:background="#FFFFFF"
@@ -57,6 +74,14 @@
       android:layout_centerVertical="true"
       android:layout_alignParentBottom="true"
       android:layout_marginBottom="40dp">
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:gravity="center"
+        android:text="@string/ic_clear_all" 
+        android:textSize="21sp" 
+        android:textColor="#FFFFFF"/>
       <android.support.v7.widget.RecyclerView
         android:id="@+id/add_text_font_picker_recycler_view"
         android:layout_width="match_parent"
