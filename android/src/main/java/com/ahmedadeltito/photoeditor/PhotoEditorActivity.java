@@ -396,7 +396,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             addTextEditText.setText(text);
             addTextEditText.setTypeface(fontCode);
             addTextEditText.setLineSpacing(addLineSpace, miltiplyLineSpace);
-            addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.white) : colorCode);
+            addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.black) : colorCode);
         }
         final PopupWindow pop = new PopupWindow(PhotoEditorActivity.this);
         pop.setContentView(addTextPopupWindowRootView);
