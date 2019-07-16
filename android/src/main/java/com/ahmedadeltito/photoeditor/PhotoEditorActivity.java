@@ -396,7 +396,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             addTextEditText.setText(text);
             addTextEditText.setTypeface(fontCode);
             addTextEditText.setLineSpacing(addLineSpace, miltiplyLineSpace);
-            addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.black) : colorCode);
+            addTextEditText.setTextColor(colorCode);
         }
         final PopupWindow pop = new PopupWindow(PhotoEditorActivity.this);
         pop.setContentView(addTextPopupWindowRootView);
@@ -598,7 +598,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.add_image_emoji_tv) {
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
         } else if (v.getId() == R.id.add_text_tv || v.getId() == R.id.add_text_lv) {
-            openAddTextPopupWindow("", -1, Typeface.DEFAULT, 0, 1);
+            openAddTextPopupWindow("", getResources().getColor(R.color.black), Typeface.DEFAULT, 0, 1);
         } else if (v.getId() == R.id.add_pencil_tv) {
             updateBrushDrawingView(true);
         } else if (v.getId() == R.id.done_drawing_tv) {
