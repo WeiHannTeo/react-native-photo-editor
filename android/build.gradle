@@ -38,7 +38,7 @@ repositories {
 2
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.github.WeiHannTeo:photo-editor-android:b49df588c9'
+    implementation 'com.github.WeiHannTeo:photo-editor-android:22547a8b16bbb5d33b53bba53f8943457131b1f9'
     implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.android.support:design:27.1.1'
